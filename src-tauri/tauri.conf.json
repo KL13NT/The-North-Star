@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schema.tauri.app/config/2",
+	"productName": "The North Star",
+	"version": "0.1.0",
+	"identifier": "com.the-north-star.app",
+	"build": {
+		"beforeDevCommand": "pnpm dev",
+		"devUrl": "http://localhost:1420",
+		"beforeBuildCommand": "pnpm build",
+		"frontendDist": "../dist"
+	},
+	"app": {
+		"windows": [
+			{
+				"title": "the-north-star",
+				"width": 320,
+				"minHeight": 70,
+				"maxHeight": 70,
+				"height": 70,
+				"hiddenTitle": true,
+				"decorations": false,
+				"resizable": false,
+				"alwaysOnTop": true,
+				"shadow": false,
+				"x": 1580,
+				"y": 80,
+				"backgroundColor": null,
+				"transparent": true,
+				"skipTaskbar": true
+			}
+		],
+		"security": {
+			"csp": null
+		}
+	},
+	"bundle": {
+		"active": true,
+		"targets": "all",
+		"icon": [
+			"icons/32x32.png",
+			"icons/128x128.png",
+			"icons/128x128@2x.png",
+			"icons/icon.icns",
+			"icons/icon.ico"
+		]
+	}
+}
