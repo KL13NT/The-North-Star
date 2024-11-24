@@ -147,7 +147,7 @@ function App() {
 	);
 
 	const timer = (
-		<div class="flex justify-between items-center gap-2">
+		<div class="flex justify-between items-center gap-2 data-tauri-drag-region">
 			<p
 				class="text-lg text-nowrap whitespace-nowrap max-w-full overflow-x-scroll no-scrollbar"
 				ref={taskRef}
