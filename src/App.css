@@ -135,3 +135,31 @@ button {
 		background-color: #0f0f0f69;
 	}
 }
+
+[data-should-remind="true"] {
+	animation: remind 1s infinite ease-in-out;
+
+	#overlay {
+		animation: remind-overlay 1s infinite ease-in-out;
+	}
+}
+
+@keyframes remind {
+	0% {
+		border-color: transparent;
+		will-change: transform;
+	}
+	50% {
+		border-color: rgb(191 219 254 / var(--tw-border-opacity, 1));
+		transform: scale(0.95);
+	}
+}
+
+@keyframes remind-overlay {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+}

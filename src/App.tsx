@@ -1,4 +1,4 @@
-import { Show, createSignal, onCleanup } from "solid-js";
+import { Show, createEffect, createSignal, onCleanup } from "solid-js";
 import "./App.css";
 import PlayIcon from "./assets/play.svg?component-solid";
 import TimerIcon from "./assets/timer.svg?component-solid";
@@ -25,7 +25,9 @@ const formatTime = (time: number) => {
 };
 
 let interval: number;
+let reminderTimeout: number;
 let requestId!: number;
+const root = document.documentElement;
 function App() {
 	const [task, setTask] = createSignal<string | null>(null);
 	const [timed, setTimed] = createSignal<boolean>(false);
@@ -87,6 +89,22 @@ function App() {
 			behavior: "smooth",
 		});
 	};
+
+	const remind = () => {
+		clearTimeout(reminderTimeout);
+		reminderTimeout = setTimeout(() => {
+			root.dataset.shouldRemind = "true";
+		}, 1000 * 60 * 15);
+	};
+
+	const disableReminder = () => {
+		root.dataset.shouldRemind = "false";
+		remind();
+	};
+
+	createEffect(() => {
+		remind();
+	});
 
 	const form = (
 		<form
@@ -154,6 +172,7 @@ function App() {
 		<main
 			class="container h-full w-full p-4 font-display"
 			data-tauri-drag-region
+			onMouseEnter={disableReminder}
 		>
 			<Show when={running()} fallback={form}>
 				{timer}
