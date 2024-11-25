@@ -1,4 +1,5 @@
 import { Show, createEffect, createSignal, onCleanup } from "solid-js";
+import { getCurrentWindow } from "@tauri-apps/api/window";
 import "./App.css";
 import PlayIcon from "./assets/play.svg?component-solid";
 import TimerIcon from "./assets/timer.svg?component-solid";
@@ -28,6 +29,8 @@ let interval: number;
 let reminderTimeout: number;
 let requestId!: number;
 const root = document.documentElement;
+const appWindow = getCurrentWindow();
+
 function App() {
 	const [task, setTask] = createSignal<string | null>(null);
 	const [timed, setTimed] = createSignal<boolean>(false);
@@ -103,6 +106,17 @@ function App() {
 	};
 
 	createEffect(() => {
+		window.addEventListener(
+			"mousedown",
+			({ buttons, shiftKey, ctrlKey, metaKey, altKey }) => {
+				const specialKeyPressed = shiftKey || altKey || ctrlKey || metaKey;
+
+				if (buttons === 1 && specialKeyPressed) {
+					appWindow.startDragging(); // Else start dragging
+				}
+			}
+		);
+
 		remind();
 	});
 

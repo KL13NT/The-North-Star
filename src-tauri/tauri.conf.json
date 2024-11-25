@@ -25,6 +25,8 @@
 				"x": 1580,
 				"y": 80,
 				"backgroundColor": null,
+				"maximized": false,
+				"maximizable": false,
 				"transparent": true,
 				"skipTaskbar": true
 			}
