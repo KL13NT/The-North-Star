@@ -1,26 +1,11 @@
 import { Show, createEffect, createSignal, onCleanup } from "solid-js";
 import { getCurrentWindow } from "@tauri-apps/api/window";
-import {
-	isPermissionGranted,
-	requestPermission,
-	sendNotification,
-} from "@tauri-apps/plugin-notification";
+import { sendNotification } from "@tauri-apps/plugin-notification";
+import { getConfiguration, getNotificationPermission } from "./utils";
+
 import "./App.css";
 import PlayIcon from "./assets/play.svg?component-solid";
 import TimerIcon from "./assets/timer.svg?component-solid";
-
-const getPermission = async () => {
-	// Do you have permission to send a notification?
-	let permissionGranted = await isPermissionGranted();
-
-	// If not we need to request it
-	if (!permissionGranted) {
-		const permission = await requestPermission();
-		permissionGranted = permission === "granted";
-	}
-
-	return permissionGranted;
-};
 
 const secondsInHour = 1000 * 60 * 60;
 const formatterOptions: Intl.DateTimeFormatOptions = {
@@ -48,7 +33,6 @@ let reminderTimeout: number;
 let requestId!: number;
 const root = document.documentElement;
 const appWindow = getCurrentWindow();
-const reminderTimeoutDuration = import.meta.env.DEV ? 1000 * 5 : 1000 * 60 * 15;
 
 function App() {
 	const [task, setTask] = createSignal<string | null>(null);
@@ -112,15 +96,19 @@ function App() {
 		});
 	};
 
-	const remind = () => {
+	const remind = async () => {
 		clearTimeout(reminderTimeout);
+
+		const configuration = await getConfiguration();
+		const duration = import.meta.env.DEV
+			? 1000 * 5 /* 5 sec */
+			: configuration.duration * 60 * 1000;
 
 		reminderTimeout = setInterval(async () => {
 			root.dataset.shouldRemind = "true";
 
+			const permissionGranted = await getNotificationPermission();
 			const windowVisible = await getCurrentWindow().isVisible();
-			const permissionGranted = await getPermission();
-
 			if (permissionGranted && !windowVisible) {
 				sendNotification({
 					title: "Tauri reminder",
@@ -128,7 +116,7 @@ function App() {
 					icon: "./assets/logo.svg",
 				});
 			}
-		}, reminderTimeoutDuration);
+		}, duration);
 	};
 
 	const disableReminder = () => {

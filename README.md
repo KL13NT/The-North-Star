@@ -4,6 +4,18 @@ A simple and intuitive task overlay. I get easily distracted and wanted somethin
 
 Built using Tauri, Rust, TypeScript, and SolidJS.
 
+# Features
+
+- Settings file to adjust duration
+- Reminder notifications
+- Flashing reminder UI
+- Timer for when needed
+
+Settings file resolves to the following depending on environment: 
+- Windows: `C:\Users\USER\AppData\Roaming\com.the-north-star.app\settings`
+- Linux: Resolves to $XDG_CONFIG_HOME or $HOME/.config.
+- macOS: Resolves to $HOME/Library/Application Support.
+
 # Contributing
 
 I won't accept issues nor pull requests to this project. It literally doesn't

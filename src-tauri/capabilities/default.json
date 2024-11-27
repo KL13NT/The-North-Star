@@ -28,6 +28,22 @@
 		"notification:allow-request-permission",
 		"notification:allow-show",
 		"notification:allow-notify",
-		"notification:allow-create-channel"
+		"notification:allow-create-channel",
+		"fs:default",
+		{
+			"identifier": "fs:scope",
+			"allow": [
+				{ "path": "$APPCONFIG" },
+				{ "path": "$APPCONFIG/**" },
+				{ "path": "$APPCONFIG/settings" },
+				{ "path": "$APPCONFIG/settings/**" }
+			]
+		},
+		"fs:allow-read-text-file",
+		"fs:allow-write-text-file",
+		"fs:allow-exists",
+		"fs:allow-create",
+		"fs:allow-mkdir",
+		"fs:allow-write"
 	]
 }
