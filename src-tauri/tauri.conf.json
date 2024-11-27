@@ -36,6 +36,7 @@
 		}
 	},
 	"bundle": {
+		"createUpdaterArtifacts": true,
 		"active": true,
 		"targets": "all",
 		"icon": [
@@ -45,5 +46,13 @@
 			"icons/icon.icns",
 			"icons/icon.ico"
 		]
+	},
+	"plugins": {
+		"updater": {
+			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEJFQjMzOTVGRkY4RTkzRjkKUldUNWs0Ny9Yem16dnQ4b2w3NktVc3JIUjdJTHZrN3dGYitsUUphUVNta04wU1hBRXVoTEljYUYK",
+			"endpoints": [
+				"https://github.com/KL13NT/the-north-star/releases/latest/download/latest.json"
+			]
+		}
 	}
 }

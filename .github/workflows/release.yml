@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env: # Or as an environment variable
+  TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_UPDATER_PRIVATE_KEY }}
+
 jobs:
   publish-tauri:
     permissions:
