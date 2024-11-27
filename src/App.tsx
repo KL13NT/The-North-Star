@@ -1,8 +1,22 @@
 import { Show, createEffect, createSignal, onCleanup } from "solid-js";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import {
+	isPermissionGranted,
+	requestPermission,
+	sendNotification,
+} from "@tauri-apps/plugin-notification";
 import "./App.css";
 import PlayIcon from "./assets/play.svg?component-solid";
 import TimerIcon from "./assets/timer.svg?component-solid";
+
+// Do you have permission to send a notification?
+let permissionGranted = await isPermissionGranted();
+
+// If not we need to request it
+if (!permissionGranted) {
+	const permission = await requestPermission();
+	permissionGranted = permission === "granted";
+}
 
 const secondsInHour = 1000 * 60 * 60;
 const formatterOptions: Intl.DateTimeFormatOptions = {
@@ -30,6 +44,7 @@ let reminderTimeout: number;
 let requestId!: number;
 const root = document.documentElement;
 const appWindow = getCurrentWindow();
+const reminderTimeoutDuration = import.meta.env.DEV ? 1000 * 5 : 1000 * 60 * 15;
 
 function App() {
 	const [task, setTask] = createSignal<string | null>(null);
@@ -95,14 +110,23 @@ function App() {
 
 	const remind = () => {
 		clearTimeout(reminderTimeout);
-		reminderTimeout = setTimeout(() => {
+
+		reminderTimeout = setInterval(async () => {
 			root.dataset.shouldRemind = "true";
-		}, 1000 * 60 * 15);
+
+			const windowVisible = await getCurrentWindow().isVisible();
+			if (permissionGranted && !windowVisible) {
+				sendNotification({
+					title: "Tauri reminder",
+					body: task()!,
+					icon: "./assets/logo.svg",
+				});
+			}
+		}, reminderTimeoutDuration);
 	};
 
 	const disableReminder = () => {
 		root.dataset.shouldRemind = "false";
-		remind();
 	};
 
 	createEffect(() => {
@@ -116,6 +140,10 @@ function App() {
 				}
 			}
 		);
+	});
+
+	createEffect(() => {
+		if (!task() || !running()) return;
 
 		remind();
 	});

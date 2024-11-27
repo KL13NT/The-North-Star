@@ -23,6 +23,11 @@
 		"core:window:allow-set-focus",
 		"core:window:allow-show",
 		"core:window:allow-hide",
-		"core:window:allow-set-skip-taskbar"
+		"core:window:allow-set-skip-taskbar",
+		"notification:allow-permission-state",
+		"notification:allow-request-permission",
+		"notification:allow-show",
+		"notification:allow-notify",
+		"notification:allow-create-channel"
 	]
 }

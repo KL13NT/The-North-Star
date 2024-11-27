@@ -15,6 +15,7 @@ pub fn run() {
     use tauri_plugin_autostart::MacosLauncher;
 
     tauri::Builder::default()
+        .plugin(tauri_plugin_notification::init())
         .setup(|app| {
             if let Some(window) = app.get_webview_window("main") {
                 window
@@ -106,6 +107,7 @@ pub fn run() {
             MacosLauncher::LaunchAgent,
             Some(vec![]),
         ))
+        .plugin(tauri_plugin_notification::init())
         .plugin(
             tauri_plugin_log::Builder::new()
                 .clear_targets()

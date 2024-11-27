@@ -1,35 +1,40 @@
 {
-  "name": "the-north-star",
-  "version": "0.1.3",
-  "description": "",
-  "type": "module",
-  "scripts": {
-    "start": "vite",
-    "dev": "vite",
-    "dev:t": "tauri dev",
-    "build": "vite build",
-    "serve": "vite preview",
-    "tauri": "tauri"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-autostart": "~2",
-    "@tauri-apps/plugin-fs": "~2",
-    "@tauri-apps/plugin-log": "~2",
-    "@tauri-apps/plugin-shell": "^2",
-    "fitty": "^2.4.2",
-    "solid-js": "^1.7.8",
-    "solid-marquee": "^1.0.0"
-  },
-  "devDependencies": {
-    "@tauri-apps/cli": "^2",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.15",
-    "typescript": "^5.2.2",
-    "vite": "^5.3.1",
-    "vite-plugin-solid": "^2.8.0",
-    "vite-plugin-solid-svg": "^0.8.1"
-  }
+	"name": "the-north-star",
+	"version": "0.2.0",
+	"description": "",
+	"type": "module",
+	"scripts": {
+		"start": "vite",
+		"dev": "vite",
+		"dev:t": "tauri dev",
+		"build": "vite build",
+		"serve": "vite preview",
+		"tauri": "tauri",
+		"version:patch": "tauri-version patch",
+		"version:minor": "tauri-version minor",
+		"version:major": "tauri-version major"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"@tauri-apps/api": "^2",
+		"@tauri-apps/plugin-autostart": "~2",
+		"@tauri-apps/plugin-fs": "~2",
+		"@tauri-apps/plugin-log": "~2",
+		"@tauri-apps/plugin-notification": "~2",
+		"@tauri-apps/plugin-shell": "^2",
+		"fitty": "^2.4.2",
+		"solid-js": "^1.7.8",
+		"solid-marquee": "^1.0.0"
+	},
+	"devDependencies": {
+		"@tauri-apps/cli": "^2",
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8.4.49",
+		"tailwindcss": "^3.4.15",
+		"tauri-version": "1.0.0-beta.1",
+		"typescript": "^5.2.2",
+		"vite": "^5.3.1",
+		"vite-plugin-solid": "^2.8.0",
+		"vite-plugin-solid-svg": "^0.8.1"
+	}
 }
