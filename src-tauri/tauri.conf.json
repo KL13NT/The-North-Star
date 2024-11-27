@@ -1,58 +1,58 @@
 {
-	"$schema": "https://schema.tauri.app/config/2",
-	"productName": "The North Star",
-	"version": "0.2.0",
-	"identifier": "com.the-north-star.app",
-	"build": {
-		"beforeDevCommand": "pnpm dev",
-		"devUrl": "http://localhost:1420",
-		"beforeBuildCommand": "pnpm build",
-		"frontendDist": "../dist"
-	},
-	"app": {
-		"windows": [
-			{
-				"title": "the-north-star",
-				"width": 320,
-				"minHeight": 70,
-				"maxHeight": 70,
-				"height": 70,
-				"hiddenTitle": true,
-				"decorations": false,
-				"resizable": true,
-				"alwaysOnTop": true,
-				"shadow": false,
-				"x": 1580,
-				"y": 80,
-				"backgroundColor": null,
-				"maximized": false,
-				"maximizable": false,
-				"transparent": true,
-				"skipTaskbar": true
-			}
-		],
-		"security": {
-			"csp": null
-		}
-	},
-	"bundle": {
-		"createUpdaterArtifacts": true,
-		"active": true,
-		"targets": "all",
-		"icon": [
-			"icons/32x32.png",
-			"icons/128x128.png",
-			"icons/128x128@2x.png",
-			"icons/icon.icns",
-			"icons/icon.ico"
-		]
-	},
-	"plugins": {
-		"updater": {
-			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEJFQjMzOTVGRkY4RTkzRjkKUldUNWs0Ny9Yem16dnQ4b2w3NktVc3JIUjdJTHZrN3dGYitsUUphUVNta04wU1hBRXVoTEljYUYK",
-			"endpoints": [
-				"https://github.com/KL13NT/the-north-star/releases/latest/download/latest.json"
-			]
-		}
-	}
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "The North Star",
+  "version": "0.3.0",
+  "identifier": "com.the-north-star.app",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "the-north-star",
+        "width": 320,
+        "minHeight": 70,
+        "maxHeight": 70,
+        "height": 70,
+        "hiddenTitle": true,
+        "decorations": false,
+        "resizable": true,
+        "alwaysOnTop": true,
+        "shadow": false,
+        "x": 1580,
+        "y": 80,
+        "backgroundColor": null,
+        "maximized": false,
+        "maximizable": false,
+        "transparent": true,
+        "skipTaskbar": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "createUpdaterArtifacts": true,
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEJFQjMzOTVGRkY4RTkzRjkKUldUNWs0Ny9Yem16dnQ4b2w3NktVc3JIUjdJTHZrN3dGYitsUUphUVNta04wU1hBRXVoTEljYUYK",
+      "endpoints": [
+        "https://github.com/KL13NT/the-north-star/releases/latest/download/latest.json"
+      ]
+    }
+  }
 }
