@@ -9,14 +9,18 @@ import "./App.css";
 import PlayIcon from "./assets/play.svg?component-solid";
 import TimerIcon from "./assets/timer.svg?component-solid";
 
-// Do you have permission to send a notification?
-let permissionGranted = await isPermissionGranted();
+const getPermission = async () => {
+	// Do you have permission to send a notification?
+	let permissionGranted = await isPermissionGranted();
 
-// If not we need to request it
-if (!permissionGranted) {
-	const permission = await requestPermission();
-	permissionGranted = permission === "granted";
-}
+	// If not we need to request it
+	if (!permissionGranted) {
+		const permission = await requestPermission();
+		permissionGranted = permission === "granted";
+	}
+
+	return permissionGranted;
+};
 
 const secondsInHour = 1000 * 60 * 60;
 const formatterOptions: Intl.DateTimeFormatOptions = {
@@ -115,6 +119,8 @@ function App() {
 			root.dataset.shouldRemind = "true";
 
 			const windowVisible = await getCurrentWindow().isVisible();
+			const permissionGranted = await getPermission();
+
 			if (permissionGranted && !windowVisible) {
 				sendNotification({
 					title: "Tauri reminder",
